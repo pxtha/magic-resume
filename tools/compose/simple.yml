@@ -11,6 +11,8 @@ services:
     restart: unless-stopped
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 54321:5432
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
@@ -48,7 +50,8 @@ services:
     image: redis:alpine
     restart: unless-stopped
     command: redis-server --requirepass password
-
+    ports: 
+      - 6379:6379
   app:
     image: amruthpillai/reactive-resume:latest
     restart: unless-stopped
