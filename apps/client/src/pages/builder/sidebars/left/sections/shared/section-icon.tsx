@@ -50,6 +50,8 @@ export const getSectionIcon = (id: SectionKey, props: IconProps = {}) => {
       return <Books size={18} {...props} />;
     case "skills":
       return <CompassTool size={18} {...props} />;
+    case "cmcSkills":
+      return <CompassTool size={18} {...props} />;
     case "references":
       return <Users size={18} {...props} />;
 
@@ -65,7 +67,7 @@ type SectionIconProps = ButtonProps & {
 };
 
 export const SectionIcon = ({ id, name, icon, ...props }: SectionIconProps) => {
-  const section = useResumeStore((state) =>
+  let section = useResumeStore((state) =>
     get(state.resume.data.sections, id, defaultSection),
   ) as SectionWithItem;
 

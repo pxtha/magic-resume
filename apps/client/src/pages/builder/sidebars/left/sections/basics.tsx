@@ -37,16 +37,16 @@ export const BasicsSection = () => {
           />
         </div>
 
-        <div className="space-y-1.5 sm:col-span-2">
+        {/* <div className="space-y-1.5 sm:col-span-2">
           <Label htmlFor="basics.headline">{t`Headline`}</Label>
           <Input
             id="basics.headline"
             value={basics.headline}
             onChange={(event) => setValue("basics.headline", event.target.value)}
           />
-        </div>
+        </div> */}
 
-        <div className="space-y-1.5">
+        <div className="space-y-1.5 sm:col-span-2">
           <Label htmlFor="basics.email">{t`Email`}</Label>
           <Input
             id="basics.email"
@@ -60,6 +60,26 @@ export const BasicsSection = () => {
         </div>
 
         <div className="space-y-1.5">
+          <Label htmlFor="basics.nationality">{t`Nationality`}</Label>
+          <Input
+            id="basics.nationality"
+            value={basics.nationality}
+            hasError={!basicsSchema.pick({ name: true }).safeParse({ name: basics.nationality }).success}
+            onChange={(event) => setValue("basics.nationality", event.target.value)}
+          />
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor="basics.sex">{t`Sex`}</Label>
+          <Input
+            id="basics.sex"
+            value={basics.sex}
+            hasError={!basicsSchema.pick({ name: true }).safeParse({ name: basics.sex }).success}
+            onChange={(event) => setValue("basics.sex", event.target.value)}
+          />
+        </div>
+
+        {/* <div className="space-y-1.5">
           <Label htmlFor="basics.url">{t`Website`}</Label>
           <URLInput
             id="basics.url"
@@ -67,9 +87,9 @@ export const BasicsSection = () => {
             placeholder="https://example.com"
             onChange={(value) => setValue("basics.url", value)}
           />
-        </div>
+        </div> */}
 
-        <div className="space-y-1.5">
+        {/* <div className="space-y-1.5">
           <Label htmlFor="basics.phone">{t`Phone`}</Label>
           <Input
             id="basics.phone"
@@ -77,16 +97,16 @@ export const BasicsSection = () => {
             value={basics.phone}
             onChange={(event) => setValue("basics.phone", event.target.value)}
           />
-        </div>
+        </div> */}
 
-        <div className="space-y-1.5">
+        {/* <div className="space-y-1.5">
           <Label htmlFor="basics.location">{t`Location`}</Label>
           <Input
             id="basics.location"
             value={basics.location}
             onChange={(event) => setValue("basics.location", event.target.value)}
           />
-        </div>
+        </div> */}
 
         <CustomFieldsSection className="sm:col-span-2" />
       </main>

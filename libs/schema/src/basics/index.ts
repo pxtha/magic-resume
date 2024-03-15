@@ -10,6 +10,8 @@ export const basicsSchema = z.object({
   email: z.literal("").or(z.string().email()),
   phone: z.string(),
   location: z.string(),
+  sex: z.string(),
+  nationality: z.string(),
   url: urlSchema,
   customFields: z.array(customFieldSchema),
   picture: z.object({
@@ -35,6 +37,8 @@ export const defaultBasics: Basics = {
   email: "",
   phone: "",
   location: "",
+  sex: "",
+  nationality: "",
   url: defaultUrl,
   customFields: [],
   picture: {

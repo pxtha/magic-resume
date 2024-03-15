@@ -1,5 +1,6 @@
 import { Template } from "@reactive-resume/utils";
 
+import { Cmc1 } from "./cmc1";
 import { Azurill } from "./azurill";
 import { Bronzor } from "./bronzor";
 import { Chikorita } from "./chikorita";
@@ -15,31 +16,35 @@ import { Rhyhorn } from "./rhyhorn";
 
 export const getTemplate = (template: Template) => {
   switch (template) {
-    case "azurill":
-      return Azurill;
-    case "bronzor":
-      return Bronzor;
-    case "chikorita":
-      return Chikorita;
-    case "ditto":
-      return Ditto;
-    case "gengar":
-      return Gengar;
-    case "glalie":
-      return Glalie;
-    case "kakuna":
-      return Kakuna;
-    case "leafish":
-      return Leafish;
-    case "nosepass":
-      return Nosepass;
-    case "onyx":
-      return Onyx;
-    case "pikachu":
-      return Pikachu;
+    case "cmc1":
+      return Cmc1;
+    // case "azurill":
+    //   return Azurill;
+    // case "bronzor":
+    //   return Bronzor;
+    // case "chikorita":
+    //   return Chikorita;
+    // case "ditto":
+    //   return Ditto;
+    // case "gengar":
+    //   return Gengar;
+    // case "glalie":
+    //   return Glalie;
+    // case "kakuna":
+    //   return Kakuna;
+    // case "leafish":
+    //   return Leafish;
+    // case "nosepass":
+    //   return Nosepass;
+    // case "onyx":
+    //   return Onyx;
+    // case "pikachu":
+    //   return Pikachu;
     case "rhyhorn":
       return Rhyhorn;
+    // default:
+    //   return Onyx;
     default:
-      return Onyx;
+      return Cmc1;
   }
 };

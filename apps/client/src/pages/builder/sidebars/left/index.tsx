@@ -3,6 +3,7 @@ import { Plus, PlusCircle } from "@phosphor-icons/react";
 import {
   Award,
   Certification,
+  CmcSkill,
   CustomSection,
   Education,
   Experience,
@@ -60,18 +61,19 @@ export const LeftSidebar = () => {
             })}
           />
           <SectionIcon id="summary" onClick={() => scrollIntoView("#summary")} />
-          <SectionIcon id="profiles" onClick={() => scrollIntoView("#profiles")} />
+          {/* <SectionIcon id="profiles" onClick={() => scrollIntoView("#profiles")} /> */}
           <SectionIcon id="experience" onClick={() => scrollIntoView("#experience")} />
           <SectionIcon id="education" onClick={() => scrollIntoView("#education")} />
-          <SectionIcon id="skills" onClick={() => scrollIntoView("#skills")} />
+          {/* <SectionIcon id="skills" onClick={() => scrollIntoView("#skills")} /> */}
+          <SectionIcon id="cmcSkills" onClick={() => scrollIntoView("#cmcSkills")} />
           <SectionIcon id="languages" onClick={() => scrollIntoView("#languages")} />
-          <SectionIcon id="awards" onClick={() => scrollIntoView("#awards")} />
-          <SectionIcon id="certifications" onClick={() => scrollIntoView("#certifications")} />
-          <SectionIcon id="interests" onClick={() => scrollIntoView("#interests")} />
+          {/* <SectionIcon id="awards" onClick={() => scrollIntoView("#awards")} /> */}
+          {/* <SectionIcon id="certifications" onClick={() => scrollIntoView("#certifications")} /> */}
+          {/* <SectionIcon id="interests" onClick={() => scrollIntoView("#interests")} /> */}
           <SectionIcon id="projects" onClick={() => scrollIntoView("#projects")} />
-          <SectionIcon id="publications" onClick={() => scrollIntoView("#publications")} />
-          <SectionIcon id="volunteer" onClick={() => scrollIntoView("#volunteer")} />
-          <SectionIcon id="references" onClick={() => scrollIntoView("#references")} />
+          {/* <SectionIcon id="publications" onClick={() => scrollIntoView("#publications")} /> */}
+          {/* <SectionIcon id="volunteer" onClick={() => scrollIntoView("#volunteer")} /> */}
+          {/* <SectionIcon id="references" onClick={() => scrollIntoView("#references")} /> */}
 
           <SectionIcon
             id="custom"
@@ -99,12 +101,12 @@ export const LeftSidebar = () => {
           <Separator />
           <SummarySection />
           <Separator />
-          <SectionBase<Profile>
+          {/* <SectionBase<Profile>
             id="profiles"
             title={(item) => item.network}
             description={(item) => item.username}
           />
-          <Separator />
+          <Separator /> */}
           <SectionBase<Experience>
             id="experience"
             title={(item) => item.company}
@@ -117,8 +119,17 @@ export const LeftSidebar = () => {
             description={(item) => item.area}
           />
           <Separator />
-          <SectionBase<Skill>
+          {/* <SectionBase<Skill>
             id="skills"
+            title={(item) => item.name}
+            description={(item) => {
+              if (item.description) return item.description;
+              if (item.keywords.length > 0) return `${item.keywords.length} keywords`;
+            }}
+          />
+          <Separator /> */}
+          <SectionBase<CmcSkill>
+            id="cmcSkills"
             title={(item) => item.name}
             description={(item) => {
               if (item.description) return item.description;
@@ -132,49 +143,49 @@ export const LeftSidebar = () => {
             description={(item) => item.description}
           />
           <Separator />
-          <SectionBase<Award>
+          {/* <SectionBase<Award>
             id="awards"
             title={(item) => item.title}
             description={(item) => item.awarder}
           />
-          <Separator />
-          <SectionBase<Certification>
+          <Separator /> */}
+          {/* <SectionBase<Certification>
             id="certifications"
             title={(item) => item.name}
             description={(item) => item.issuer}
           />
-          <Separator />
-          <SectionBase<Interest>
+          <Separator /> */}
+          {/* <SectionBase<Interest>
             id="interests"
             title={(item) => item.name}
             description={(item) => {
               if (item.keywords.length > 0) return `${item.keywords.length} keywords`;
             }}
           />
-          <Separator />
+          <Separator /> */}
           <SectionBase<Project>
             id="projects"
             title={(item) => item.name}
             description={(item) => item.description}
           />
           <Separator />
-          <SectionBase<Publication>
+          {/* <SectionBase<Publication>
             id="publications"
             title={(item) => item.name}
             description={(item) => item.publisher}
           />
-          <Separator />
-          <SectionBase<Volunteer>
+          <Separator /> */}
+          {/* <SectionBase<Volunteer>
             id="volunteer"
             title={(item) => item.organization}
             description={(item) => item.position}
           />
-          <Separator />
-          <SectionBase<Reference>
+          <Separator /> */}
+          {/* <SectionBase<Reference>
             id="references"
             title={(item) => item.name}
             description={(item) => item.description}
-          />
+          /> */}
 
           {/* Custom Sections */}
           {Object.values(customSections).map((section) => (

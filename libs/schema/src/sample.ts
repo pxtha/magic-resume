@@ -7,6 +7,8 @@ export const sampleResume: ResumeData = {
     email: "john.doe@gmail.com",
     phone: "(555) 123-4567",
     location: "Pleasantville, CA 94588",
+    sex: "male",
+    nationality: "Vietnam",
     url: {
       label: "",
       href: "https://johndoe.me/",
@@ -200,6 +202,12 @@ export const sampleResume: ResumeData = {
             label: "",
             href: "",
           },
+          platform: "",
+          programmingLanguage: "",
+          responsibilities: "",
+          size: 0,
+          technologies: "",
+          tools: ""
         },
         {
           id: "ncxgdjjky54gh59iz2t1xi1v",
@@ -214,6 +222,12 @@ export const sampleResume: ResumeData = {
             label: "",
             href: "",
           },
+          platform: "",
+          programmingLanguage: "",
+          responsibilities: "",
+          size: 0,
+          technologies: "",
+          tools: ""
         },
       ],
     },
@@ -273,6 +287,23 @@ export const sampleResume: ResumeData = {
           level: 0,
           keywords: ["Webpack", "Git", "Jenkins", "Docker", "JIRA"],
         },
+      ],
+    },
+    cmcSkills: {
+      name: "Skills",
+      columns: 1,
+      visible: true,
+      id: "cmcSkills",
+      items: [
+        {
+          id: "b5l75aseexqv17quvqgh73fe",
+          visible: true,
+          name: "Tools",
+          description: "Intermediate",
+          level: 0,
+          keywords: ["Webpack", "Git", "Jenkins", "Docker", "JIRA"],
+          levelOfKeywords: ["1", "5", "7", "4", "10"]
+        }
       ],
     },
     custom: {},

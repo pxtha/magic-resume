@@ -59,13 +59,13 @@ export const ProjectsDialog = () => {
         />
 
         <FormField
-          name="description"
+          name="size"
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t`Description`}</FormLabel>
+              <FormLabel>{t`Team size`}</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} type="number" onChange={(e) => field.onChange(parseInt(e.target.value))} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -87,13 +87,70 @@ export const ProjectsDialog = () => {
         />
 
         <FormField
-          name="url"
+          name="responsibilities"
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t`Website`}</FormLabel>
+              <FormLabel>{t`Responsibilities`}</FormLabel>
               <FormControl>
-                <URLInput {...field} placeholder="https://rxresu.me" />
+                <Input {...field} placeholder={t`Senior Developer, Team Leader...`} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="programmingLanguage"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t`Programming Languages`}</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder={t`C#, VBA, JavaScript...`} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="tools"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t`Tools`}</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder={t`Visual Studio, NetBeans, JIRA...`} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+
+        <FormField
+          name="platform"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t`Platform, server and database`}</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder={t`Windows, Java EE, MySQL...`} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="technologies"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t`Used technologies`}</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder={t`WinForms, NAnt, CCNet...`} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -121,48 +178,6 @@ export const ProjectsDialog = () => {
           )}
         />
 
-        <FormField
-          name="keywords"
-          control={form.control}
-          render={({ field }) => (
-            <div className="space-y-3 sm:col-span-2">
-              <FormItem>
-                <FormLabel>{t`Keywords`}</FormLabel>
-                <FormControl>
-                  <BadgeInput {...field} setPendingKeyword={setPendingKeyword} />
-                </FormControl>
-                <FormDescription>
-                  {t`You can add multiple keywords by separating them with a comma or pressing enter.`}
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-3">
-                <AnimatePresence>
-                  {field.value.map((item, index) => (
-                    <motion.div
-                      layout
-                      key={item}
-                      initial={{ opacity: 0, y: -50 }}
-                      animate={{ opacity: 1, y: 0, transition: { delay: index * 0.1 } }}
-                      exit={{ opacity: 0, x: -50 }}
-                    >
-                      <Badge
-                        className="cursor-pointer"
-                        onClick={() => {
-                          field.onChange(field.value.filter((v) => item !== v));
-                        }}
-                      >
-                        <span className="mr-1">{item}</span>
-                        <X size={12} weight="bold" />
-                      </Badge>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
-            </div>
-          )}
-        />
       </div>
     </SectionDialog>
   );

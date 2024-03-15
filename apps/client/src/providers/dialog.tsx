@@ -1,5 +1,6 @@
 import { AwardsDialog } from "../pages/builder/sidebars/left/dialogs/awards";
 import { CertificationsDialog } from "../pages/builder/sidebars/left/dialogs/certifications";
+import { CmcSkillsDialog } from "../pages/builder/sidebars/left/dialogs/cmc-skills";
 import { CustomSectionDialog } from "../pages/builder/sidebars/left/dialogs/custom-section";
 import { EducationDialog } from "../pages/builder/sidebars/left/dialogs/education";
 import { ExperienceDialog } from "../pages/builder/sidebars/left/dialogs/experience";
@@ -49,6 +50,7 @@ export const DialogProvider = ({ children }: Props) => {
             <SkillsDialog />
             <ReferencesDialog />
             <CustomSectionDialog />
+            <CmcSkillsDialog />
           </>
         )}
       </div>

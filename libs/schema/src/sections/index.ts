@@ -15,6 +15,7 @@ import { publicationSchema } from "./publication";
 import { referenceSchema } from "./reference";
 import { skillSchema } from "./skill";
 import { volunteerSchema } from "./volunteer";
+import { cmcSkillSchema } from "./cmc-skill";
 
 // Schema
 export const sectionSchema = z.object({
@@ -82,6 +83,10 @@ export const sectionsSchema = z.object({
     id: z.literal("skills"),
     items: z.array(skillSchema),
   }),
+  cmcSkills: sectionSchema.extend({
+    id: z.literal("cmcSkills"),
+    items: z.array(cmcSkillSchema),
+  }),
   custom: z.record(z.string(), customSchema),
 });
 
@@ -115,6 +120,7 @@ export const defaultSections: Sections = {
   publications: { ...defaultSection, id: "publications", name: "Publications", items: [] },
   references: { ...defaultSection, id: "references", name: "References", items: [] },
   skills: { ...defaultSection, id: "skills", name: "Skills", items: [] },
+  cmcSkills: { ...defaultSection, id: "cmcSkills", name: "CMC Skills", items: [] },
   custom: {},
 };
 
@@ -131,3 +137,4 @@ export * from "./publication";
 export * from "./reference";
 export * from "./skill";
 export * from "./volunteer";
+export * from "./cmc-skill"
