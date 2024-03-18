@@ -78,12 +78,12 @@ services:
       NODE_ENV: production
 
       # -- URLs --
-      PUBLIC_URL: http://localhost:3000
-      STORAGE_URL: http://localhost:9000/default
+      PUBLIC_URL: http://192.168.52.102:3000
+      STORAGE_URL: http://192.168.52.102:9000/default
 
       # -- Printer (Chrome) --
       CHROME_TOKEN: chrome_token
-      CHROME_URL: ws://compose-chrome-1:3000
+      CHROME_URL: ws://chrome:3000
 
       # -- Database (Postgres) --
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
@@ -112,8 +112,8 @@ services:
       # VITE_SENTRY_DSN: https://id.sentry.io # Optional
 
       # -- Crowdin (Optional) --
-      # CROWDIN_PROJECT_ID:
-      # CROWDIN_PERSONAL_TOKEN:
+      CROWDIN_PROJECT_ID:
+      CROWDIN_PERSONAL_TOKEN:
 
       # -- Email (Optional) --
       # DISABLE_EMAIL_AUTH: true

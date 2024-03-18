@@ -420,7 +420,7 @@ export const Cmc1 = ({ columns, isFirstPage = false }: TemplateProps) => {
         <div className="relative">
           <div className="sticky inset-x-0 top-0 h-[85px] w-full z-0 grid grid-cols-12">
             <div className="col-span-4">
-              <img src="http://localhost:9000/default/clto5dz7f00004ohi6qxp1yz8/pictures/logo.svg" />
+              <img src="http://192.168.52.102:9000/default/logo.png" />
             </div>
             <div className="col-span-8 text-end text-xs">
               <p>Head Office: 8 & 9 th Floor, CMC Tower, 11 Duy Tan Street,</p>
@@ -449,7 +449,7 @@ export const Cmc1 = ({ columns, isFirstPage = false }: TemplateProps) => {
             <div>
               <a href="https://www.digitalocean.com/?utm_medium=opensource&utm_source=Reactive-Resume">
                 <img
-                  src="http://localhost:9000/default/clto5dz7f00004ohi6qxp1yz8/pictures/Picture2.png"
+                  src="http://192.168.52.102:9000/default/footer.png"
                   alt="Powered by DigitalOcean"
                   className="block dark:hidden"
                 />

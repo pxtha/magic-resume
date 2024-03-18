@@ -1,0 +1,5 @@
+d6512a95b4d174e26669b0251422fcbc  usr/bin/dumb-init
+d2cf9ffd5134b636bc0e400318503df3  usr/share/doc/dumb-init/README.md.gz
+d9420fde621ee2f0adf13dca690cdaf1  usr/share/doc/dumb-init/changelog.Debian.gz
+75fa1f1baf80b9cf9bfc1c25758db1e3  usr/share/doc/dumb-init/copyright
+4b78ed6a54bcf051af24fa2862e01a9e  usr/share/man/man1/dumb-init.1.gz

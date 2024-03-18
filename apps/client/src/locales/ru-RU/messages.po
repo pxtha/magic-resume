@@ -112,8 +112,8 @@ msgstr "Добавить новый элемент"
 msgid "Add a new item"
 msgstr "Добавить новый элемент"
 
-#: apps/client/src/pages/builder/sidebars/left/index.tsx:79
-#: apps/client/src/pages/builder/sidebars/left/index.tsx:196
+#: apps/client/src/pages/builder/sidebars/left/index.tsx:81
+#: apps/client/src/pages/builder/sidebars/left/index.tsx:207
 msgid "Add a new section"
 msgstr "Добавить новый раздел"
 
@@ -209,7 +209,7 @@ msgstr "Резервный код"
 msgid "Backup Codes may contain only lowercase letters or numbers, and must be exactly 10 characters."
 msgstr "Резервные коды могут содержать только строчные буквы или цифры и должны состоять ровно из 10 символов."
 
-#: apps/client/src/pages/builder/sidebars/left/index.tsx:56
+#: apps/client/src/pages/builder/sidebars/left/index.tsx:57
 msgctxt "The basics section of a resume consists of User's Picture, Full Name, Location etc."
 msgid "Basics"
 msgstr "Основы"
@@ -234,6 +234,10 @@ msgstr "Сделано при помощи"
 #: apps/client/src/pages/home/sections/contributors/index.tsx:20
 msgid "By the community, for the community."
 msgstr "Продукт сообщества для сообщества."
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:110
+msgid "C#, VBA, JavaScript..."
+msgstr ""
 
 #: apps/client/src/pages/builder/sidebars/left/sections/shared/section-dialog.tsx:132
 #: apps/client/src/pages/dashboard/resumes/_dialogs/lock.tsx:49
@@ -400,7 +404,6 @@ msgstr "Удалить Аккаунт"
 
 #: apps/client/src/pages/builder/sidebars/left/dialogs/custom-section.tsx:71
 #: apps/client/src/pages/builder/sidebars/left/dialogs/languages.tsx:50
-#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:66
 #: apps/client/src/pages/builder/sidebars/left/dialogs/references.tsx:53
 #: apps/client/src/pages/builder/sidebars/left/dialogs/skills.tsx:63
 msgid "Description"
@@ -642,9 +645,9 @@ msgstr "Монохром"
 msgid "Grid"
 msgstr "Плитка"
 
-#: apps/client/src/pages/builder/sidebars/left/sections/basics.tsx:41
-msgid "Headline"
-msgstr "Заголовок"
+#: apps/client/src/pages/builder/sidebars/left/dialogs/cmc-skills.tsx:56
+msgid "Group skill"
+msgstr ""
 
 #: apps/client/src/pages/dashboard/settings/_sections/account.tsx:106
 msgid "Here, you can update your account information such as your profile picture, name and username."
@@ -790,7 +793,6 @@ msgstr "JSON"
 
 #: apps/client/src/pages/builder/sidebars/left/dialogs/custom-section.tsx:149
 #: apps/client/src/pages/builder/sidebars/left/dialogs/interests.tsx:63
-#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:130
 #: apps/client/src/pages/builder/sidebars/left/dialogs/skills.tsx:107
 msgid "Keywords"
 msgstr "Ключевые слова"
@@ -855,7 +857,6 @@ msgstr "Список"
 #: apps/client/src/pages/builder/sidebars/left/dialogs/custom-section.tsx:99
 #: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:86
 #: apps/client/src/pages/builder/sidebars/left/dialogs/volunteer.tsx:81
-#: apps/client/src/pages/builder/sidebars/left/sections/basics.tsx:83
 msgid "Location"
 msgstr "Местоположение"
 
@@ -930,6 +931,10 @@ msgstr "Имя"
 msgctxt "Name of the Certification"
 msgid "Name"
 msgstr "Имя"
+
+#: apps/client/src/pages/builder/sidebars/left/sections/basics.tsx:63
+msgid "Nationality"
+msgstr ""
 
 #: apps/client/src/pages/builder/sidebars/left/dialogs/profiles.tsx:39
 msgid "Network"
@@ -1026,10 +1031,6 @@ msgstr "PDF"
 msgid "Personal notes for each resume"
 msgstr "Личные заметки для каждого резюме"
 
-#: apps/client/src/pages/builder/sidebars/left/sections/basics.tsx:73
-msgid "Phone"
-msgstr "Телефон"
-
 #: apps/client/src/pages/auth/layout.tsx:76
 msgid "Photograph by Patrick Tomasso"
 msgstr "Фотография Патрика Томассо"
@@ -1042,6 +1043,10 @@ msgstr "Выбор любого шрифта из Google Fonts"
 #: apps/client/src/pages/dashboard/settings/_sections/account.tsx:120
 msgid "Picture"
 msgstr "Фотография"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:137
+msgid "Platform, server and database"
+msgstr ""
 
 #: apps/client/src/pages/auth/verify-email/page.tsx:59
 msgid "Please note that this step is completely optional."
@@ -1088,6 +1093,10 @@ msgstr "Профессиональный"
 #: apps/client/src/pages/dashboard/settings/_sections/profile.tsx:60
 msgid "Profile"
 msgstr "Профиль"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:108
+msgid "Programming Languages"
+msgstr ""
 
 #: apps/client/src/pages/builder/sidebars/right/sections/sharing.tsx:55
 msgid "Public"
@@ -1176,6 +1185,10 @@ msgstr "Сбросить пароль"
 msgid "Reset Zoom"
 msgstr "Сбросить масштаб"
 
+#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:94
+msgid "Responsibilities"
+msgstr ""
+
 #: apps/client/src/pages/dashboard/_components/sidebar.tsx:86
 #: apps/client/src/pages/dashboard/resumes/page.tsx:20
 #: apps/client/src/pages/dashboard/resumes/page.tsx:35
@@ -1246,6 +1259,10 @@ msgstr "Отправить эл. письмо"
 msgid "Send me a message"
 msgstr "Отправить мне сообщение"
 
+#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:96
+msgid "Senior Developer, Team Leader..."
+msgstr ""
+
 #: apps/client/src/components/user-options.tsx:28
 #: apps/client/src/pages/dashboard/_components/sidebar.tsx:92
 #: apps/client/src/pages/dashboard/settings/page.tsx:16
@@ -1256,6 +1273,10 @@ msgstr "Настройки"
 #: apps/client/src/pages/dashboard/settings/_dialogs/two-factor.tsx:157
 msgid "Setup two-factor authentication on your account"
 msgstr "Настройте двухфакторную аутентификацию на своей учетной записи"
+
+#: apps/client/src/pages/builder/sidebars/left/sections/basics.tsx:73
+msgid "Sex"
+msgstr ""
 
 #: apps/client/src/pages/builder/sidebars/right/index.tsx:73
 #: apps/client/src/pages/builder/sidebars/right/sections/sharing.tsx:39
@@ -1317,6 +1338,10 @@ msgstr "Регистрация в настоящее время отключен
 msgid "Size (in px)"
 msgstr "Размер (в пикселях)"
 
+#: apps/client/src/pages/builder/sidebars/left/dialogs/cmc-skills.tsx:72
+msgid "Skill"
+msgstr ""
+
 #: apps/client/src/pages/dashboard/resumes/_dialogs/resume.tsx:227
 msgid "Slug"
 msgstr "URL"
@@ -1373,7 +1398,7 @@ msgstr "Сохранено"
 #: apps/client/src/pages/builder/sidebars/left/dialogs/custom-section.tsx:127
 #: apps/client/src/pages/builder/sidebars/left/dialogs/education.tsx:138
 #: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:114
-#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:108
+#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:165
 #: apps/client/src/pages/builder/sidebars/left/dialogs/publications.tsx:95
 #: apps/client/src/pages/builder/sidebars/left/dialogs/references.tsx:81
 #: apps/client/src/pages/builder/sidebars/left/dialogs/volunteer.tsx:109
@@ -1395,6 +1420,10 @@ msgstr "Поддержка формата страниц A4/Letter"
 #: apps/client/src/pages/dashboard/settings/_sections/profile.tsx:80
 msgid "System"
 msgstr "Системная"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:66
+msgid "Team size"
+msgstr ""
 
 #: apps/client/src/pages/builder/sidebars/right/index.tsx:62
 #: apps/client/src/pages/builder/sidebars/right/sections/template.tsx:19
@@ -1476,6 +1505,10 @@ msgstr "Переключить линию разрыва страницы"
 msgid "Toggle Page Numbers"
 msgstr "Переключить нумерацию страниц"
 
+#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:122
+msgid "Tools"
+msgstr ""
+
 #: apps/client/src/pages/home/sections/features/index.tsx:68
 msgid "Track views and downloads"
 msgstr "Отслеживание просмотров и загрузок"
@@ -1556,6 +1589,10 @@ msgstr "URL должен начинаться с https://"
 msgid "Use your backup code"
 msgstr "Использовать резервный код"
 
+#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:151
+msgid "Used technologies"
+msgstr ""
+
 #: apps/client/src/services/errors/translate-error.ts:11
 msgid "User does not have an associated 'secrets' record. Please report this issue on GitHub."
 msgstr "У пользователя нет связанной с ним записи 'secrets'. Пожалуйста, сообщите об этой проблеме на GitHub."
@@ -1607,6 +1644,10 @@ msgstr "Просмотры"
 msgid "Visible"
 msgstr "Видимый"
 
+#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:124
+msgid "Visual Studio, NetBeans, JIRA..."
+msgstr ""
+
 #: apps/client/src/pages/auth/verify-email/page.tsx:61
 msgid "We verify your email address only to ensure that we can send you a password reset link in case you forget your password."
 msgstr "Мы подтверждаем ваш адрес эл. почты, только чтобы убедиться, что мы можем отправить ссылку для сброса пароля, если вы его забудете."
@@ -1617,11 +1658,9 @@ msgstr "Мы подтверждаем ваш адрес эл. почты, тол
 #: apps/client/src/pages/builder/sidebars/left/dialogs/education.tsx:124
 #: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:100
 #: apps/client/src/pages/builder/sidebars/left/dialogs/profiles.tsx:68
-#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:94
 #: apps/client/src/pages/builder/sidebars/left/dialogs/publications.tsx:81
 #: apps/client/src/pages/builder/sidebars/left/dialogs/references.tsx:67
 #: apps/client/src/pages/builder/sidebars/left/dialogs/volunteer.tsx:95
-#: apps/client/src/pages/builder/sidebars/left/sections/basics.tsx:63
 msgid "Website"
 msgstr "Сайт"
 
@@ -1629,12 +1668,23 @@ msgstr "Сайт"
 msgid "What's new in the latest version"
 msgstr "Что нового в последней версии"
 
+#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:139
+msgid "Windows, Java EE, MySQL..."
+msgstr ""
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:153
+msgid "WinForms, NAnt, CCNet..."
+msgstr ""
+
 #: apps/client/src/pages/builder/sidebars/left/dialogs/custom-section.tsx:154
 #: apps/client/src/pages/builder/sidebars/left/dialogs/interests.tsx:68
-#: apps/client/src/pages/builder/sidebars/left/dialogs/projects.tsx:135
 #: apps/client/src/pages/builder/sidebars/left/dialogs/skills.tsx:112
 msgid "You can add multiple keywords by separating them with a comma or pressing enter."
 msgstr "Вы можете добавить несколько ключевых слов, разделив их запятой или нажав Enter."
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/cmc-skills.tsx:77
+msgid "You can add multiple skill by pressing enter and set level for them"
+msgstr ""
 
 #: apps/client/src/pages/auth/login/page.tsx:88
 msgid "You can also enter your username."
@@ -1688,4 +1738,3 @@ msgstr "Увеличить"
 #: apps/client/src/pages/builder/_components/toolbar.tsx:86
 msgid "Zoom Out"
 msgstr "Уменьшить"
-

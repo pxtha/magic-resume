@@ -1,0 +1,13 @@
+/.
+/usr
+/usr/bin
+/usr/bin/dumb-init
+/usr/share
+/usr/share/doc
+/usr/share/doc/dumb-init
+/usr/share/doc/dumb-init/README.md.gz
+/usr/share/doc/dumb-init/changelog.Debian.gz
+/usr/share/doc/dumb-init/copyright
+/usr/share/man
+/usr/share/man/man1
+/usr/share/man/man1/dumb-init.1.gz
