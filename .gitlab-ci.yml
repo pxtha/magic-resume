@@ -1,0 +1,28 @@
+stages:
+  - build
+  - release
+  - development
+  - deploy
+
+.deploy-dev:
+  stage: development
+  services:
+    - kroniak/ssh-client
+  script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ssh -tt CentOS-DE3@$HOST "cd $GO_PATH && git checkout $BRANCH &&  git pull && $COMMAND"
+    
+deploy:development:
+  extends: .deploy-dev
+  variables:
+    HOST: ${STG_HOST}
+    SSH_PRIVATE_KEY: ${SSH_PRIVATE_KEY_STG}
+    GO_PATH: CMC/resume
+    COMMAND: make run
+    BRANCH: development
+  only:
+    - development
