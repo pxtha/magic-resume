@@ -18,6 +18,23 @@ enum Visibility {
   private
 }
 
+enum Role{
+  owner
+  admin
+  user
+}
+
+model Group{
+  id               String   @id @default(cuid())
+  name             String
+  parentGroup      String?   
+  users            UserOnGroup[]
+  resume           Resume[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  deleteAt         DateTime? 
+}
+
 model User {
   id               String   @id @default(cuid())
   name             String
@@ -32,6 +49,7 @@ model User {
   provider         Provider
   secrets          Secrets?
   resumes          Resume[]
+  groups           UserOnGroup[]
 }
 
 model Secrets {
@@ -56,10 +74,24 @@ model Resume {
   locked     Boolean    @default(false)
   userId     String
   user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  groupId    String
+  group      Group      @relation(fields: [groupId], references :[id], onDelete: Cascade)
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
 
   @@unique([userId, id])
   @@unique([userId, slug])
   @@index(fields: [userId])
+}
+
+model UserOnGroup{
+  role       Role       @default(user)
+  userId     String
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  groupId    String
+  group      Group      @relation(fields: [groupId], references :[id], onDelete: Cascade)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  @@id([userId, groupId])
 }

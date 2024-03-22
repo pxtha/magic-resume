@@ -51,6 +51,7 @@ export class ResumeService {
         title: createResumeDto.title,
         visibility: createResumeDto.visibility,
         slug: createResumeDto.slug ?? kebabCase(createResumeDto.title),
+        groupId: createResumeDto.groupId
       },
     });
 
@@ -72,6 +73,7 @@ export class ResumeService {
         data: importResumeDto.data,
         title: importResumeDto.title || randomTitle,
         slug: importResumeDto.slug || kebabCase(randomTitle),
+        groupId: importResumeDto.groupId
       },
     });
 

@@ -75,9 +75,10 @@ export const ResumeDialog = () => {
     form.setValue("slug", slug);
   }, [form.watch("title")]);
 
+  //TODO: add groupID
   const onSubmit = async (values: FormValues) => {
     if (isCreate) {
-      await createResume({ slug: values.slug, title: values.title, visibility: "private" });
+      await createResume({ slug: values.slug, title: values.title, visibility: "private", groupId: "" });
     }
 
     if (isUpdate) {
@@ -97,6 +98,7 @@ export const ResumeDialog = () => {
         title: values.title,
         slug: values.slug,
         data: payload.item.data,
+        groupId: ""
       });
     }
 
@@ -133,6 +135,7 @@ export const ResumeDialog = () => {
       title: title || randomName,
       slug: slug || kebabCase(randomName),
       data: sampleResume,
+      groupId: ""
     });
 
     close();
