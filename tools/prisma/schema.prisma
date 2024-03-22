@@ -50,6 +50,7 @@ model User {
   secrets          Secrets?
   resumes          Resume[]
   groups           UserOnGroup[]
+  userPlus         Boolean  @default(false)
 }
 
 model Secrets {
