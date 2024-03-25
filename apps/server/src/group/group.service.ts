@@ -3,8 +3,7 @@ import {
 } from "@nestjs/common";
 import { CreateGroupDto, UpdateGroupDto } from "@reactive-resume/dto";
 import { PrismaService } from "nestjs-prisma";
-
-
+import get from "lodash.get";
 
 @Injectable()
 export class GroupService {
@@ -14,10 +13,26 @@ export class GroupService {
   ) {
   }
 
-  findAllByUserId(userId: string) {
-    return this.prisma.userOnGroup.findMany({
-      where: { userId },
+
+  nest<T>(items: T[], id = null, link = "group.parentGroup"): T[] {
+    const groupKey: string = "groupId"
+    return items
+      .filter((item) => get(item, link) === id)
+      .map((item) => ({ ...item, children: this.nest(items, get(item, groupKey)) }));
+  }
+
+
+  async findAllByUserId(userId: string) {
+    const parentGroups = await this.prisma.userOnGroup.findMany({
+      include: {
+        group: true
+      },
+      where: {
+        userId,
+      },
     });
+
+    return this.nest(parentGroups)
   }
 
   async create(userId: string, createGroupDto: CreateGroupDto) {
