@@ -119,10 +119,10 @@ export class ResumeController {
     return this.resumeService.lock(user.id, id, set);
   }
 
-  @Delete(":id")
+  @Delete(":id/:groupId")
   @UseGuards(TwoFactorGuard)
-  remove(@User() user: UserEntity, @Param("id") id: string) {
-    return this.resumeService.remove(user.id, id);
+  remove(@User() user: UserEntity, @Param("id") id: string, @Param("groupId") groupId: string) {
+    return this.resumeService.remove(user.id, id, groupId);
   }
 
   @Get("/print/:id")

@@ -29,6 +29,9 @@ export class GroupService {
       },
       where: {
         userId,
+        group: {
+          deleteAt: null
+        }
       },
     });
 
@@ -66,28 +69,13 @@ export class GroupService {
   }
 
   async remove(id: string) {
-    const resumeInGroup = await this.prisma.resume.findFirst({
-      where: {
-        groupId: id
-      }
-    })
-
-    if (resumeInGroup) {
-
-      return this.prisma.group.update({
-        where: {
-          id
-        },
-        data: {
-          deleteAt: new Date()
-        }
-      })
-    }
-
-    return this.prisma.group.delete({
+    return this.prisma.group.update({
       where: {
         id
       },
+      data: {
+        deleteAt: new Date()
+      }
     })
   }
 }

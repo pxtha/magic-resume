@@ -4,6 +4,7 @@ import { z } from "nestjs-zod/z";
 
 export const deleteResumeSchema = z.object({
   id: idSchema,
+  groupId: idSchema
 });
 
 export class DeleteResumeDto extends createZodDto(deleteResumeSchema) {}

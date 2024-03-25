@@ -75,10 +75,10 @@ export const ResumeDialog = () => {
     form.setValue("slug", slug);
   }, [form.watch("title")]);
 
-  //TODO: add groupID
   const onSubmit = async (values: FormValues) => {
+    //TODO: add groupID
     if (isCreate) {
-      await createResume({ slug: values.slug, title: values.title, visibility: "private", groupId: "" });
+      await createResume({ slug: values.slug, title: values.title, visibility: "private", groupId: "fake_group" });
     }
 
     if (isUpdate) {
@@ -98,14 +98,14 @@ export const ResumeDialog = () => {
         title: values.title,
         slug: values.slug,
         data: payload.item.data,
-        groupId: ""
+        groupId: payload.item.groupId
       });
     }
 
     if (isDelete) {
       if (!payload.item?.id) return;
 
-      await deleteResume({ id: payload.item?.id });
+      await deleteResume({ id: payload.item?.id, groupId: payload.item?.groupId });
     }
 
     close();
@@ -135,7 +135,7 @@ export const ResumeDialog = () => {
       title: title || randomName,
       slug: slug || kebabCase(randomName),
       data: sampleResume,
-      groupId: ""
+      groupId: "clu2biy2i0000pqsspgwnfafl"
     });
 
     close();

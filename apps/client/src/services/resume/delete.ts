@@ -7,7 +7,7 @@ import { queryClient } from "@/client/libs/query-client";
 
 export const deleteResume = async (data: DeleteResumeDto) => {
   const response = await axios.delete<ResumeDto, AxiosResponse<ResumeDto>, DeleteResumeDto>(
-    `/resume/${data.id}`,
+    `/resume/${data.id}/${data.groupId}`,
   );
 
   return response.data;

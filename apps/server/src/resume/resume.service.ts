@@ -181,7 +181,7 @@ export class ResumeService {
     return resume;
   }
 
-  async remove(userId: string, id: string) {
+  async remove(userId: string, id: string, groupId: string) {
     await Promise.all([
       // Remove cached keys
       this.redis.del(`user:${userId}:resumes`),
@@ -192,7 +192,7 @@ export class ResumeService {
       this.storageService.deleteObject(userId, "previews", id),
     ]);
 
-    return this.prisma.resume.delete({ where: { userId_id: { userId, id } } });
+    return this.prisma.resume.delete({ where: { userId_id: { userId, id }, groupId } });
   }
 
   async printResume(resume: ResumeDto, userId?: string) {
