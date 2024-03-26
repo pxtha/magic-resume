@@ -17,7 +17,7 @@ export const ResumesPage = () => {
     <>
       <Helmet>
         <title>
-          {t`Resumes`} - {t`Reactive Resume`}
+          {t`All Views`}
         </title>
       </Helmet>
 
@@ -32,7 +32,7 @@ export const ResumesPage = () => {
             animate={{ opacity: 1, x: 0 }}
             className="text-4xl font-bold tracking-tight"
           >
-            {t`Resumes`}
+            {t`All Views`}
           </motion.h1>
 
           <TabsList>

@@ -39,14 +39,16 @@ import { RefreshGuard } from "./guards/refresh.guard";
 import { TwoFactorGuard } from "./guards/two-factor.guard";
 import { getCookieOptions } from "./utils/cookie";
 import { payloadSchema } from "./utils/payload";
+import { GroupService } from "../group/group.service";
 
 @ApiTags("Authentication")
 @Controller("auth")
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
+    private readonly groupService: GroupService,
     private readonly utils: UtilsService,
-  ) {}
+  ) { }
 
   private async exchangeToken(id: string, email: string, isTwoFactorAuth: boolean = false) {
     try {
@@ -95,9 +97,15 @@ export class AuthController {
 
   @Post("register")
   async register(@Body() registerDto: RegisterDto, @Res({ passthrough: true }) response: Response) {
-    const user = await this.authService.register(registerDto);
+    try {
+      const user = await this.authService.register(registerDto);
+      await this.groupService.create(user.id, { name: `default_group_${user.id}` })
 
-    return this.handleAuthenticationResponse(user, response);
+      return this.handleAuthenticationResponse(user, response);
+    }
+    catch (error) {
+      throw new BadRequestException(ErrorMessage.SomethingWentWrong);
+    }
   }
 
   @Post("login")

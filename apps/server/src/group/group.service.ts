@@ -21,6 +21,15 @@ export class GroupService {
       .map((item) => ({ ...item, children: this.nest(items, get(item, groupKey)) }));
   }
 
+  findGroupDefault(userId: string) {
+    return this.prisma.group.findFirstOrThrow({
+      where: {
+        name: {
+          equals: `default_group_${userId}`
+        }
+      }
+    })
+  }
 
   async findAllByUserId(userId: string) {
     const parentGroups = await this.prisma.userOnGroup.findMany({
@@ -30,7 +39,10 @@ export class GroupService {
       where: {
         userId,
         group: {
-          deleteAt: null
+          deleteAt: null,
+          NOT: {
+            name: `default_group_${userId}`
+          }
         }
       },
     });
@@ -52,7 +64,19 @@ export class GroupService {
       },
     });
 
-    return group;
+    const found = await this.prisma.userOnGroup.findUniqueOrThrow({
+      include: {
+        group: true
+      },
+      where: {
+        userId_groupId: {
+          groupId: group.id,
+          userId
+        }
+      },
+    });
+
+    return this.nest([found], get(found, "group.parentGroup" as string))[0];
   }
 
   async update(id: string, updateGroupDto: UpdateGroupDto) {

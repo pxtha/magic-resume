@@ -56,7 +56,7 @@ export class ResumeService {
     });
 
     await Promise.all([
-      this.redis.del(`user:${userId}:resumes`),
+      this.redis.del(`user:${userId}:group:${resume.groupId}:resumes`),
       this.redis.set(`user:${userId}:resume:${resume.id}`, JSON.stringify(resume)),
     ]);
 
@@ -78,17 +78,31 @@ export class ResumeService {
     });
 
     await Promise.all([
-      this.redis.del(`user:${userId}:resumes`),
+      this.redis.del(`user:${userId}:group:${resume.groupId}:resumes`),
       this.redis.set(`user:${userId}:resume:${resume.id}`, JSON.stringify(resume)),
     ]);
 
     return resume;
   }
 
-  findAll(userId: string) {
-    return this.utils.getCachedOrSet(`user:${userId}:resumes`, () =>
+  async findAll(userId: string, groupId: string) {
+
+    let group = { id: groupId };
+
+    if (!groupId) {
+      group = await this.prisma.group.findFirstOrThrow({
+        where: {
+          name: {
+            equals: `default_group_${userId}`
+          }
+        }
+      })
+    }
+
+
+    return this.utils.getCachedOrSet(`user:${userId}:group:${group?.id}:resumes`, () =>
       this.prisma.resume.findMany({
-        where: { userId },
+        where: { userId, groupId },
         orderBy: { updatedAt: "desc" },
       }),
     );
@@ -153,7 +167,7 @@ export class ResumeService {
 
       await Promise.all([
         this.redis.set(`user:${userId}:resume:${id}`, JSON.stringify(resume)),
-        this.redis.del(`user:${userId}:resumes`),
+        this.redis.del(`user:${userId}:group:${resume.groupId}:resumes`),
         this.redis.del(`user:${userId}:storage:resumes:${id}`),
         this.redis.del(`user:${userId}:storage:previews:${id}`),
       ]);
@@ -175,7 +189,7 @@ export class ResumeService {
 
     await Promise.all([
       this.redis.set(`user:${userId}:resume:${id}`, JSON.stringify(resume)),
-      this.redis.del(`user:${userId}:resumes`),
+      this.redis.del(`user:${userId}:group:${resume.groupId}:resumes`),
     ]);
 
     return resume;
@@ -184,7 +198,7 @@ export class ResumeService {
   async remove(userId: string, id: string, groupId: string) {
     await Promise.all([
       // Remove cached keys
-      this.redis.del(`user:${userId}:resumes`),
+      this.redis.del(`user:${userId}:group:${groupId}:resumes`),
       this.redis.del(`user:${userId}:resume:${id}`),
 
       // Remove files in storage, and their cached keys

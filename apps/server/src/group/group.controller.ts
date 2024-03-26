@@ -26,6 +26,12 @@ export class GroupController {
     private readonly groupService: GroupService,
   ) { }
 
+  @Get("/default")
+  @UseGuards(TwoFactorGuard)
+  findDefault(@User("id") id: string) {
+    return this.groupService.findGroupDefault(id);
+  }
+
   @Get()
   @UseGuards(TwoFactorGuard)
   findAllByUserId(@User("id") id: string) {

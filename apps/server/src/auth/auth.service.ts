@@ -28,7 +28,7 @@ export class AuthService {
     private readonly mailService: MailService,
     private readonly jwtService: JwtService,
     private readonly utils: UtilsService,
-  ) {}
+  ) { }
 
   private hash(password: string): Promise<string> {
     return bcryptjs.hash(password, 10);
@@ -95,8 +95,7 @@ export class AuthService {
 
   async register(registerDto: RegisterDto) {
     const hashedPassword = await this.hash(registerDto.password);
-    const defaultGroupName = `default_group_${registerDto.username}`;
-    
+
     try {
       const user = await this.userService.create({
         name: registerDto.name,
@@ -105,19 +104,7 @@ export class AuthService {
         locale: registerDto.locale,
         provider: "email",
         emailVerified: false, // Set to true if you don't want to verify user's email
-        secrets: { create: { password: hashedPassword } },
-        groups: {
-          create: [
-            {
-              role:"owner",
-              group: {
-                create: {
-                  name: defaultGroupName,
-                }
-              }
-            }
-          ]
-        }
+        secrets: { create: { password: hashedPassword } }
       });
 
       // Do not `await` this function, otherwise the user will have to wait for the email to be sent before the response is returned
