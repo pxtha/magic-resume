@@ -12,6 +12,7 @@ import { ImportResumeListItem } from "../list/_components/import-item";
 import { ResumeListItem } from "../list/_components/resume-item";
 import { Breadcrums } from "../list/_components/breadcrums";
 import { Breadcrum } from "@/client/router/loaders/group";
+import { useUser } from "@/client/services/user";
 
 type LoaderDataTreeView = {
     resumes: ResumeDto[],
@@ -22,10 +23,10 @@ type LoaderDataTreeView = {
 export const TreeView = () => {
     const loaderData = useLoaderData() as LoaderDataTreeView;
     const { groups, resumes, breadcrum } = loaderData
+    const { user } = useUser();
 
-    return (
-        <div className="grid gap-y-2">
-            <Breadcrums breadcrums={breadcrum} />
+    const renderAction = () => {
+        return user?.userPlus ? <>
             <motion.div initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }}>
                 <CreateGroupListItem />
             </motion.div>
@@ -40,6 +41,14 @@ export const TreeView = () => {
             >
                 <ImportResumeListItem />
             </motion.div>
+        </> : null
+    }
+
+    return (
+        <div className="grid gap-y-2">
+            <Breadcrums breadcrums={breadcrum} />
+
+            {renderAction()}
 
             {resumes.length > 0 && (
                 <>
