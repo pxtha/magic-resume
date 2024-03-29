@@ -2,6 +2,10 @@ import { idSchema } from "@reactive-resume/schema";
 import { createZodDto } from "nestjs-zod/dto";
 import { z } from "nestjs-zod/z";
 
+type DeepRequired<T> = Required<{
+  [K in keyof T]: T[K] extends Required<T[K]> ? T[K] : DeepRequired<T[K]>
+}>
+
 export const groupSchema = z.object({
   id: idSchema,
   name: z.string().min(3).max(255),
@@ -14,14 +18,23 @@ export const groupSchema = z.object({
 export class GroupDto extends createZodDto(groupSchema) { }
 
 // Schema
-export const groupDataSchema = z.object({
+const groupBaseDataSchema = z.object({
   role: z.enum(["owner", "admin", "user"]).default("user"),
   userId: idSchema,
   groupId: idSchema,
   createdAt: z.date().or(z.dateString()),
   updatedAt: z.date().or(z.dateString()),
   group: groupSchema,
-  children: z.array(groupSchema).default([])
+}).deepPartial();
+
+
+type GroupBase = z.infer<typeof groupBaseDataSchema> & {
+  children: GroupBase[];
+};
+
+export const groupDataSchema: z.ZodType<GroupBase> = groupBaseDataSchema.extend({
+  children: z.lazy(() => groupDataSchema.array()),
 });
 
-export class GroupDataDto extends createZodDto(groupDataSchema) { }
+export class GroupDataSchemaDto extends createZodDto(groupDataSchema) { }
+export type GroupDataDto = DeepRequired<GroupDataSchemaDto>

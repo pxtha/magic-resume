@@ -42,7 +42,7 @@ import { useCreateResume, useDeleteResume, useUpdateResume } from "@/client/serv
 import { useImportResume } from "@/client/services/resume/import";
 import { useDialog } from "@/client/stores/dialog";
 import { useGroup } from "@/client/services/group/group";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const formSchema = createResumeSchema.extend({ id: idSchema.optional() });
 
@@ -52,6 +52,7 @@ export const ResumeDialog = () => {
   const { group } = useGroup();
   const { pathname } = useLocation();
   const groupPath = pathname.split("/").reverse()[0];
+  const navigate = useNavigate();
 
   const { isOpen, mode, payload, close } = useDialog<ResumeDto>("resume");
 
@@ -80,6 +81,8 @@ export const ResumeDialog = () => {
     const slug = kebabCase(form.watch("title"));
     form.setValue("slug", slug);
   }, [form.watch("title")]);
+
+  const callback = () => navigate(pathname, { replace: true });
 
   const onSubmit = async (values: FormValues) => {
     if (isCreate) {
@@ -114,6 +117,7 @@ export const ResumeDialog = () => {
       await deleteResume({ id: payload.item?.id, groupId: payload.item?.groupId });
     }
 
+    callback();
     close();
   };
 

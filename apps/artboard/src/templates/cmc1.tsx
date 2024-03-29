@@ -1,4 +1,5 @@
 import {
+  CmcSkill,
   CustomSection,
   CustomSectionGroup,
   Education,
@@ -8,7 +9,6 @@ import {
   Project,
   SectionKey,
   SectionWithItem,
-  Skill,
   URL,
 } from "@reactive-resume/schema";
 import { cn, isEmptyString, isUrl, linearTransform } from "@reactive-resume/utils";
@@ -269,7 +269,7 @@ const Skills = () => {
 
   return (
     <div>
-      <Section<Skill> section={section} levelKey="level" keywordsKey="keywords">
+      <Section<CmcSkill> section={section} levelKey="level" keywordsKey="keywords">
         {(item) => (
           <Fragment>
             <div className="border border-[#C0C0C0] p-3 text-center font-bold">{item.name}</div>
@@ -277,7 +277,7 @@ const Skills = () => {
               {item.keywords.map((v, i) => (
                 <Fragment key={v}>
                   <div className="col-span-8 border border-[#C0C0C0] p-3">{v}</div>
-                  <div className="col-span-4 border border-[#C0C0C0] p-3 text-center">{levelText(item.level)}</div>
+                  <div className="col-span-4 border border-[#C0C0C0] p-3 text-center">{levelText(+item.levelOfKeywords[i])}</div>
                 </Fragment>
               ))}
             </div>
@@ -378,15 +378,6 @@ const Custom = ({ id }: { id: string }) => {
 };
 
 const mapSectionToComponent = (section: SectionKey) => {
-
-  const obj = {
-    skills: <Skills />,
-    summary: <></>,
-    education: <Education />,
-    experience: <Experience />,
-    languages: <Languages />,
-    projects: <Projects />
-  };
 
   switch (section) {
     case "profiles":

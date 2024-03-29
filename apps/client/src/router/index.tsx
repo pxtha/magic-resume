@@ -15,7 +15,6 @@ import { DashboardLayout } from "../pages/dashboard/layout";
 import { ResumesPage } from "../pages/dashboard/resumes/page";
 import { SettingsPage } from "../pages/dashboard/settings/page";
 import { HomeLayout } from "../pages/home/layout";
-import { HomePage } from "../pages/home/page";
 import { publicLoader, PublicResumePage } from "../pages/public/page";
 import { Providers } from "../providers";
 import { AuthGuard } from "./guards/auth";
@@ -27,7 +26,7 @@ import { TreeView } from "../pages/dashboard/resumes/_layouts/tree";
 export const routes = createRoutesFromElements(
   <Route element={<Providers />}>
     <Route element={<HomeLayout />}>
-      <Route path="/" element={<HomePage />} />
+      <Route index element={<Navigate to="/dashboard/all" replace />} />
     </Route>
 
     <Route path="auth">
@@ -65,7 +64,7 @@ export const routes = createRoutesFromElements(
       <Route element={<AuthGuard />}>
         <Route element={<DashboardLayout />}>
           <Route path="all" element={<ResumesPage />} />
-          <Route path="all/*" element={<TreeView />} />
+          <Route path="all/*" loader={groupLoader}  element={<TreeView />} />
           <Route path="settings" element={<SettingsPage />} />
 
           <Route index element={<Navigate to="/dashboard/all" replace />} />

@@ -1,9 +1,9 @@
 import { t } from "@lingui/macro";
 import {
   DotsThreeVertical,
+  Folder,
   FolderOpen,
   PencilSimple,
-  UsersFour,
   TrashSimple
 } from "@phosphor-icons/react";
 import { GroupDto } from "@reactive-resume/dto";
@@ -22,7 +22,7 @@ import {
   HoverCardTrigger
 } from "@reactive-resume/ui";
 import dayjs from "dayjs";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { useDialog } from "@/client/stores/dialog";
 
@@ -35,7 +35,6 @@ type Props = {
 export const GroupListItem = ({ group }: Props) => {
   const navigate = useNavigate();
   const pathname = useLocation().pathname;
-
   const { open } = useDialog<GroupDto>("group");
 
   const lastUpdated = dayjs().to(group.updatedAt);
@@ -44,7 +43,7 @@ export const GroupListItem = ({ group }: Props) => {
     const pathName = `${pathname}/${group.id}`
     navigate({
       pathname: pathName
-    }, { replace: true })
+    })
   };
 
   const onUpdate = () => {
@@ -104,7 +103,7 @@ export const GroupListItem = ({ group }: Props) => {
             <BaseListItem
               onClick={onOpen}
               className="group"
-              start={<UsersFour />}
+              start={<Folder />}
               title={group.name}
               description={t`Last updated ${lastUpdated}`}
               end={dropdownMenu}

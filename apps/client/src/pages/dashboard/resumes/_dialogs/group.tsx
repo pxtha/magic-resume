@@ -34,10 +34,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { useCreateGroup, useDeleteGroup, useUpdateGroup } from "@/client/services/group";
-import { useDialog } from "@/client/stores/dialog";
-import { useLocation, useParams } from "react-router-dom";
 import { useUser } from "@/client/services/user";
-import { useGroup } from "@/client/services/group/group";
+import { useDialog } from "@/client/stores/dialog";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const formSchema = createGroupSchema.extend({ id: idSchema.optional() });
 
@@ -48,6 +47,7 @@ export const GroupDialog = () => {
   const { user } = useUser();
   const { pathname } = useLocation();
   const groupId = pathname.split("/").reverse()[0];
+  const navigate = useNavigate();
 
   const isCreate = mode === "create";
   const isUpdate = mode === "update";
@@ -67,6 +67,8 @@ export const GroupDialog = () => {
   useEffect(() => {
     if (isOpen) onReset();
   }, [isOpen, payload]);
+
+  const callback = () => navigate(pathname, { replace: true });
 
   const onSubmit = async (values: FormValues) => {
     if (!user?.userPlus) return;
@@ -90,6 +92,7 @@ export const GroupDialog = () => {
       await deleteGroup({ id: payload.item?.id });
     }
 
+    callback();
     close();
   };
 

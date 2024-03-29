@@ -19,7 +19,7 @@ export const ListView = () => {
 
 
   useEffect(() => { refetch() }, [])
-  
+
   return (
     <div className="grid gap-y-2">
       <motion.div initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }}>

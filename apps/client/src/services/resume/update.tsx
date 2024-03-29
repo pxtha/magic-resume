@@ -14,7 +14,7 @@ export const updateResume = async (data: UpdateResumeDto) => {
 
   queryClient.setQueryData<ResumeDto>(["resume", { id: response.data.id }], response.data);
 
-  queryClient.setQueryData<ResumeDto[]>(["resumes"], (cache) => {
+  queryClient.setQueryData<ResumeDto[]>(["resumes", data.groupId], (cache) => {
     if (!cache) return [response.data];
     return cache.map((resume) => {
       if (resume.id === response.data.id) return response.data;

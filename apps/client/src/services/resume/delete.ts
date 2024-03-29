@@ -23,7 +23,7 @@ export const useDeleteResume = () => {
     onSuccess: (data) => {
       queryClient.removeQueries({ queryKey: ["resume", data.id] });
 
-      queryClient.setQueryData<ResumeDto[]>(["resumes"], (cache) => {
+      queryClient.setQueryData<ResumeDto[]>(["resumes", data.groupId], (cache) => {
         if (!cache) return [];
         return cache.filter((resume) => resume.id !== data.id);
       });

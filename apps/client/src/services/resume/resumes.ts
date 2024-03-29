@@ -24,7 +24,7 @@ export const useResumes = (groupId?: string) => {
     refetch,
     data: resumes,
   } = useQuery({
-    queryKey: ["resumes"],
+    queryKey: ["resumes", groupId],
     queryFn: () => fetchResumes({ groupId }),
     
   });
