@@ -18,9 +18,9 @@ export const groupSchema = z.object({
 export class GroupDto extends createZodDto(groupSchema) { }
 
 // Schema
-const groupBaseDataSchema = z.object({
+export const groupBaseDataSchema = z.object({
   role: z.enum(["owner", "admin", "user"]).default("user"),
-  userId: idSchema,
+  email: z.string(),
   groupId: idSchema,
   createdAt: z.date().or(z.dateString()),
   updatedAt: z.date().or(z.dateString()),

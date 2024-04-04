@@ -22,6 +22,7 @@ import { GuestGuard } from "./guards/guest";
 import { authLoader } from "./loaders/auth";
 import { groupLoader } from "./loaders/group";
 import { TreeView } from "../pages/dashboard/resumes/_layouts/tree";
+import { UsersManagementPage } from "../pages/dashboard/users-management/page";
 
 export const routes = createRoutesFromElements(
   <Route element={<Providers />}>
@@ -64,8 +65,9 @@ export const routes = createRoutesFromElements(
       <Route element={<AuthGuard />}>
         <Route element={<DashboardLayout />}>
           <Route path="all" element={<ResumesPage />} />
-          <Route path="all/*" loader={groupLoader}  element={<TreeView />} />
+          <Route path="all/*" loader={groupLoader} element={<TreeView />} />
           <Route path="settings" element={<SettingsPage />} />
+          <Route path="groups" element={<UsersManagementPage />} />
 
           <Route index element={<Navigate to="/dashboard/all" replace />} />
         </Route>

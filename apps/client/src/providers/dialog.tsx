@@ -17,6 +17,7 @@ import { ImportDialog } from "../pages/dashboard/resumes/_dialogs/import";
 import { LockDialog } from "../pages/dashboard/resumes/_dialogs/lock";
 import { ResumeDialog } from "../pages/dashboard/resumes/_dialogs/resume";
 import { TwoFactorDialog } from "../pages/dashboard/settings/_dialogs/two-factor";
+import { InviteDialog } from "../pages/dashboard/users-management/_dialog/invite";
 import { useResumeStore } from "../stores/resume";
 
 type Props = {
@@ -35,8 +36,9 @@ export const DialogProvider = ({ children }: Props) => {
         <LockDialog />
         <ImportDialog />
         <TwoFactorDialog />
-        <GroupDialog/>
-        
+        <GroupDialog />
+        <InviteDialog />
+
         {isResumeLoaded && (
           <>
             <ProfilesDialog />

@@ -11,6 +11,7 @@ import { patchNestJsSwagger } from "nestjs-zod";
 
 import { AppModule } from "./app.module";
 import { Config } from "./config/schema";
+import { PrismaClient } from "@prisma/client";
 
 patchNestJsSwagger();
 
@@ -20,6 +21,16 @@ async function bootstrap() {
   });
   const configService = app.get(ConfigService<Config>);
   const prisma = app.get(PrismaService);
+  prisma.$use(async (params, next) => {
+    // Check incoming query type
+    if (params.action == 'delete') {
+      // Delete queries
+      // Change action to an update
+      params.action = 'update'
+      params.args['data'] = { deletedAt: new Date() }
+    }
+    return next(params)
+  })
 
   // Sentry
   // Error Reporting and Performance Monitoring

@@ -13,15 +13,6 @@ export const updateGroup = async (data: UpdateGroupDto) => {
     data,
   );
 
-
-  // queryClient.setQueryData<GroupDto[]>(["groups"], (cache) => {
-  //   if (!cache) return [response.data];
-  //   return cache.map((group) => {
-  //     if (group.id === response.data.id) return response.data;
-  //     return group;
-  //   });
-  // });
-
   return response.data;
 };
 
