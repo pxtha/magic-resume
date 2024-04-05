@@ -27,7 +27,7 @@ export class MailService {
   createSendEmailCommand = (options: ISendMailOptions) => {
     return new SendEmailCommand({
       Destination: {
-        ToAddresses: ["dinhthien2804@gmail.com"],
+        ToAddresses: [options.to?.toString()!],
       },
       Message: {
         Body: {
