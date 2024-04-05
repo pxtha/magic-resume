@@ -7,6 +7,7 @@ import {
   LockOpen,
   PencilSimple,
   TrashSimple,
+  FileCloud,
 } from "@phosphor-icons/react";
 import { ResumeDto } from "@reactive-resume/dto";
 import {
@@ -145,6 +146,7 @@ export const ResumeListItem = ({ resume }: Props) => {
             <BaseListItem
               onClick={onOpen}
               className="group"
+              start={<FileCloud />}
               title={resume.title}
               description={t`Last updated ${lastUpdated}`}
               end={dropdownMenu}

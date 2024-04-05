@@ -9,6 +9,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
@@ -34,7 +35,7 @@ export class ResumeController {
   constructor(
     private readonly resumeService: ResumeService,
     private readonly utils: UtilsService,
-  ) {}
+  ) { }
 
   @Get("schema")
   getSchema() {
@@ -77,8 +78,8 @@ export class ResumeController {
 
   @Get()
   @UseGuards(TwoFactorGuard)
-  findAll(@User() user: UserEntity) {
-    return this.resumeService.findAll(user.id);
+  findAll(@User() user: UserEntity, @Query("groupId") groupId: string) {
+    return this.resumeService.findAll(user.id, groupId);
   }
 
   @Get(":id")
@@ -119,10 +120,10 @@ export class ResumeController {
     return this.resumeService.lock(user.id, id, set);
   }
 
-  @Delete(":id")
+  @Delete(":id/:groupId")
   @UseGuards(TwoFactorGuard)
-  remove(@User() user: UserEntity, @Param("id") id: string) {
-    return this.resumeService.remove(user.id, id);
+  remove(@User() user: UserEntity, @Param("id") id: string, @Param("groupId") groupId: string) {
+    return this.resumeService.remove(user.id, id, groupId);
   }
 
   @Get("/print/:id")

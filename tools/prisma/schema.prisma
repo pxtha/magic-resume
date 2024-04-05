@@ -18,20 +18,39 @@ enum Visibility {
   private
 }
 
+enum Role {
+  owner
+  admin
+  user
+}
+
+model Group {
+  id          String        @id @default(cuid())
+  name        String
+  parentGroup String?
+  users       UserOnGroup[]
+  resume      Resume[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  deleteAt    DateTime?
+}
+
 model User {
-  id               String   @id @default(cuid())
+  id               String        @id @default(cuid())
   name             String
   picture          String?
-  username         String   @unique
-  email            String   @unique
-  locale           String   @default("en-US")
-  emailVerified    Boolean  @default(false)
-  twoFactorEnabled Boolean  @default(false)
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  username         String        @unique
+  email            String        @unique
+  locale           String        @default("en-US")
+  emailVerified    Boolean       @default(false)
+  twoFactorEnabled Boolean       @default(false)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
   provider         Provider
   secrets          Secrets?
   resumes          Resume[]
+  userPlus         Boolean       @default(false)
+  deletedAt DateTime?    
 }
 
 model Secrets {
@@ -45,6 +64,8 @@ model Secrets {
   resetToken           String?   @unique
   userId               String    @unique
   user                 User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  deletedAt DateTime?    
+
 }
 
 model Resume {
@@ -56,10 +77,24 @@ model Resume {
   locked     Boolean    @default(false)
   userId     String
   user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  groupId    String
+  group      Group      @relation(fields: [groupId], references: [id], onDelete: Cascade)
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
+  deletedAt DateTime?    
 
   @@unique([userId, id])
   @@unique([userId, slug])
   @@index(fields: [userId])
+}
+
+model UserOnGroup {
+  id         String     @id @default(cuid())
+  role      Role        @default(user)
+  email     String
+  groupId   String
+  group     Group       @relation(fields: [groupId], references: [id], onDelete: SetNull)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  deletedAt DateTime?    
 }

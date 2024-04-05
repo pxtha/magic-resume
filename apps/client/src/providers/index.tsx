@@ -9,11 +9,13 @@ import { DialogProvider } from "./dialog";
 import { LocaleProvider } from "./locale";
 import { ThemeProvider } from "./theme";
 import { Toaster } from "./toaster";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 export const Providers = () => (
   <LocaleProvider>
     <HelmetProvider context={helmetContext}>
       <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={true} />
         <ThemeProvider>
           <TooltipProvider>
             <DialogProvider>

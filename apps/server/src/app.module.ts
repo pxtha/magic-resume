@@ -18,6 +18,7 @@ import { StorageModule } from "./storage/storage.module";
 import { TranslationModule } from "./translation/translation.module";
 import { UserModule } from "./user/user.module";
 import { UtilsModule } from "./utils/utils.module";
+import { GroupModule } from "./group/group.module";
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { UtilsModule } from "./utils/utils.module";
     PrinterModule,
     TranslationModule,
     ContributorsModule,
+    GroupModule,
 
     // Static Assets
     ServeStaticModule.forRoot({
@@ -68,4 +70,4 @@ import { UtilsModule } from "./utils/utils.module";
     },
   ],
 })
-export class AppModule {}
+export class AppModule { }

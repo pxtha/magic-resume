@@ -25,10 +25,11 @@ export const userSchema = z.object({
   provider: z.enum(["email", "github", "google"]).default("email"),
   createdAt: z.date().or(z.dateString()),
   updatedAt: z.date().or(z.dateString()),
+  userPlus: z.boolean().default(false)
 });
 
-export class UserDto extends createZodDto(userSchema) {}
+export class UserDto extends createZodDto(userSchema) { }
 
 export const userWithSecretsSchema = userSchema.merge(z.object({ secrets: secretsSchema }));
 
-export class UserWithSecrets extends createZodDto(userWithSecretsSchema) {}
+export class UserWithSecrets extends createZodDto(userWithSecretsSchema) { }

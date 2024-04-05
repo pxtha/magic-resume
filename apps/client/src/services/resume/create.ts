@@ -23,8 +23,7 @@ export const useCreateResume = () => {
     mutationFn: createResume,
     onSuccess: (data) => {
       queryClient.setQueryData<ResumeDto>(["resume", { id: data.id }], data);
-
-      queryClient.setQueryData<ResumeDto[]>(["resumes"], (cache) => {
+      queryClient.setQueryData<ResumeDto[]>(["resumes", data.groupId], (cache) => {
         if (!cache) return [data];
         return [...cache, data];
       });

@@ -3,6 +3,7 @@ import { createZodDto } from "nestjs-zod/dto";
 import { z } from "nestjs-zod/z";
 
 import { userSchema } from "../user";
+import { groupSchema } from "../group";
 
 export const resumeSchema = z.object({
   id: idSchema,
@@ -13,6 +14,8 @@ export const resumeSchema = z.object({
   locked: z.boolean().default(false),
   userId: idSchema,
   user: userSchema.optional(),
+  groupId: idSchema,
+  group: groupSchema.optional(),
   createdAt: z.date().or(z.dateString()),
   updatedAt: z.date().or(z.dateString()),
 });

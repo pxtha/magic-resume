@@ -40,7 +40,7 @@ export const BuilderHeader = () => {
 
         <div className="flex items-center justify-center gap-x-1 lg:mx-auto">
           <Button asChild size="icon" variant="ghost">
-            <Link to="/dashboard/resumes">
+            <Link to="/dashboard/all">
               <HouseSimple />
             </Link>
           </Button>

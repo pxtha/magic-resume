@@ -17,7 +17,7 @@ export const ResumesPage = () => {
     <>
       <Helmet>
         <title>
-          {t`Resumes`} - {t`Reactive Resume`}
+          {t`All Views`}
         </title>
       </Helmet>
 
@@ -32,7 +32,7 @@ export const ResumesPage = () => {
             animate={{ opacity: 1, x: 0 }}
             className="text-4xl font-bold tracking-tight"
           >
-            {t`Resumes`}
+            {t`All Views`}
           </motion.h1>
 
           <TabsList>
@@ -42,7 +42,7 @@ export const ResumesPage = () => {
             </TabsTrigger>
             <TabsTrigger value="list" className="size-8 p-0 sm:h-8 sm:w-auto sm:px-4">
               <List />
-              <span className="ml-2 hidden sm:block">{t`List`}</span>
+              <span className="ml-2 hidden sm:block">{t`Groups`}</span>
             </TabsTrigger>
           </TabsList>
         </div>

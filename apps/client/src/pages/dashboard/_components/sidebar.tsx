@@ -1,5 +1,5 @@
 import { t } from "@lingui/macro";
-import { FadersHorizontal, ReadCvLogo } from "@phosphor-icons/react";
+import { FadersHorizontal, ReadCvLogo, UsersFour } from "@phosphor-icons/react";
 import { Button, KeyboardShortcut, Separator } from "@reactive-resume/ui";
 import { cn } from "@reactive-resume/utils";
 import { motion } from "framer-motion";
@@ -71,7 +71,7 @@ export const Sidebar = ({ setOpen }: SidebarProps) => {
   const navigate = useNavigate();
 
   useKeyboardShortcut(["shift", "r"], () => {
-    navigate("/dashboard/resumes");
+    navigate("/dashboard/all");
     setOpen?.(false);
   });
 
@@ -82,8 +82,8 @@ export const Sidebar = ({ setOpen }: SidebarProps) => {
 
   const sidebarItems: SidebarItem[] = [
     {
-      path: "/dashboard/resumes",
-      name: t`Resumes`,
+      path: "/dashboard/all",
+      name: t`All Views`,
       shortcut: "⇧R",
       icon: <ReadCvLogo />,
     },
@@ -92,6 +92,12 @@ export const Sidebar = ({ setOpen }: SidebarProps) => {
       name: t`Settings`,
       shortcut: "⇧S",
       icon: <FadersHorizontal />,
+    },
+    {
+      path: "/dashboard/groups",
+      name: t`Users Management`,
+      shortcut: "⇧G",
+      icon: <UsersFour />,
     },
   ];
 

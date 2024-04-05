@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "@lingui/macro";
 import { CaretDown, Flask, MagicWand, Plus } from "@phosphor-icons/react";
-import { createResumeSchema, ResumeDto } from "@reactive-resume/dto";
+import { createResumeSchema, GroupDto, groupSchema, ResumeDto } from "@reactive-resume/dto";
 import { idSchema, sampleResume } from "@reactive-resume/schema";
 import {
   AlertDialog,
@@ -41,12 +41,19 @@ import { z } from "zod";
 import { useCreateResume, useDeleteResume, useUpdateResume } from "@/client/services/resume";
 import { useImportResume } from "@/client/services/resume/import";
 import { useDialog } from "@/client/stores/dialog";
+import { useGroup } from "@/client/services/group/group";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const formSchema = createResumeSchema.extend({ id: idSchema.optional() });
 
 type FormValues = z.infer<typeof formSchema>;
 
 export const ResumeDialog = () => {
+  const { group } = useGroup();
+  const { pathname } = useLocation();
+  const groupPath = pathname.split("/").reverse()[0];
+  const navigate = useNavigate();
+
   const { isOpen, mode, payload, close } = useDialog<ResumeDto>("resume");
 
   const isCreate = mode === "create";
@@ -75,9 +82,12 @@ export const ResumeDialog = () => {
     form.setValue("slug", slug);
   }, [form.watch("title")]);
 
+  const callback = () => navigate(pathname, { replace: true });
+
   const onSubmit = async (values: FormValues) => {
     if (isCreate) {
-      await createResume({ slug: values.slug, title: values.title, visibility: "private" });
+      const groupId = groupPath === "all" ? group?.id! : groupPath;
+      await createResume({ slug: values.slug, title: values.title, visibility: "private", groupId: groupId });
     }
 
     if (isUpdate) {
@@ -97,15 +107,17 @@ export const ResumeDialog = () => {
         title: values.title,
         slug: values.slug,
         data: payload.item.data,
+        groupId: payload.item.groupId
       });
     }
 
     if (isDelete) {
       if (!payload.item?.id) return;
 
-      await deleteResume({ id: payload.item?.id });
+      await deleteResume({ id: payload.item?.id, groupId: payload.item?.groupId });
     }
 
+    callback();
     close();
   };
 
@@ -133,6 +145,7 @@ export const ResumeDialog = () => {
       title: title || randomName,
       slug: slug || kebabCase(randomName),
       data: sampleResume,
+      groupId: "clu2biy2i0000pqsspgwnfafl"
     });
 
     close();
