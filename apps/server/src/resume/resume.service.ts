@@ -73,7 +73,7 @@ export class ResumeService {
         data: importResumeDto.data,
         title: importResumeDto.title || randomTitle,
         slug: importResumeDto.slug || kebabCase(randomTitle),
-        groupId: importResumeDto.groupId
+        groupId: importResumeDto.groupId!
       },
     });
 

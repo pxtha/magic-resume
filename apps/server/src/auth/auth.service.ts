@@ -153,7 +153,7 @@ export class AuthService {
     const subject = "Reset your Reactive Resume password";
     const text = `Please click on the link below to reset your password:\n\n${url}`;
 
-    await this.mailService.simplyMail({ to: email, subject, text });
+    await this.mailService.sendEmail({ to: email, subject, text });
   }
 
   async updatePassword(email: string, password: string) {
@@ -213,7 +213,7 @@ export class AuthService {
       const subject = "Verify your email address";
       const text = `Please verify your email address by clicking on the link below:\n\n${url}`;
 
-      await this.mailService.simplyMail({ to: email, subject, text });
+      await this.mailService.sendEmail({ to: email, subject, text });
     } catch (error) {
       Logger.error(error);
       throw new InternalServerErrorException(error);
