@@ -94,7 +94,7 @@ services:
 
       # -- Emails --
       MAIL_FROM: noreply@localhost
-      # SMTP_URL: smtp://user:pass@smtp:587 # Optional
+      SMTP_URL: smtp://dinhthien2804@gmail.com:ohtvfguprafqnjcd@smtp.gmail.com:587 # Optional
 
       # -- Storage (Minio) --
       STORAGE_ENDPOINT: minio
