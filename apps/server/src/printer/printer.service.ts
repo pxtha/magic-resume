@@ -13,6 +13,7 @@ import { connect } from "puppeteer";
 import { Config } from "../config/schema";
 import { StorageService } from "../storage/storage.service";
 import { UtilsService } from "../utils/utils.service";
+import { ContributorsService } from "../contributors/contributors.service";
 
 @Injectable()
 export class PrinterService {
@@ -25,6 +26,7 @@ export class PrinterService {
     private readonly storageService: StorageService,
     private readonly httpService: HttpService,
     private readonly utils: UtilsService,
+    private readonly pythonApi: ContributorsService
   ) {
     const chromeUrl = this.configService.getOrThrow<string>("CHROME_URL");
     const chromeToken = this.configService.getOrThrow<string>("CHROME_TOKEN");
@@ -191,7 +193,7 @@ export class PrinterService {
       const buffer = Buffer.from(await pdf.save());
 
       // This step will also save the resume URL in cache
-      const resumeUrl = await this.storageService.uploadObject(
+      const resumePdfUrl = await this.storageService.uploadObject(
         resume.userId,
         "resumes",
         buffer,
@@ -201,6 +203,9 @@ export class PrinterService {
       // Close all the pages and disconnect from the browser
       await page.close();
       browser.disconnect();
+
+      const filepath = resumePdfUrl.split(storageUrl)[1];
+      const resumeUrl = await this.pythonApi.fetchPythonContributors({ url: resumePdfUrl, filepath })
 
       return resumeUrl;
     } catch (error) {

@@ -9,13 +9,17 @@ type GitHubResponse = { id: number; login: string; html_url: string; avatar_url:
 type CrowdinContributorsResponse = {
   data: { data: { id: number; username: string; avatarUrl: string } }[];
 };
+type PythonServerResponse = {
+  message: string,
+  filepath: string
+}
 
 @Injectable()
 export class ContributorsService {
   constructor(
     private readonly httpService: HttpService,
     private readonly configService: ConfigService<Config>,
-  ) {}
+  ) { }
 
   async fetchGitHubContributors() {
     const response = await this.httpService.axiosRef.get(
@@ -52,6 +56,19 @@ export class ContributorsService {
           avatar: data.avatarUrl,
         } satisfies ContributorDto;
       });
+    } catch (error) {
+      return [];
+    }
+  }
+
+  async fetchPythonContributors(payload: { url: string, filepath: string }) {
+    try {
+      const pythonURL = this.configService.get("PYTHON_URL");
+
+      const response = await this.httpService.axiosRef.post(`${pythonURL}/pdf2docx`, payload);
+      const { filepath, message } = response.data as PythonServerResponse;
+
+      return filepath;
     } catch (error) {
       return [];
     }
