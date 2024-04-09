@@ -104,7 +104,8 @@ export class AuthService {
         locale: registerDto.locale,
         provider: "email",
         emailVerified: false, // Set to true if you don't want to verify user's email
-        secrets: { create: { password: hashedPassword } }
+        secrets: { create: { password: hashedPassword } },
+        userPlus: true
       });
 
       // Do not `await` this function, otherwise the user will have to wait for the email to be sent before the response is returned
